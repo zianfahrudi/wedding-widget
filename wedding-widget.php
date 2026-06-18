@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Wedding Widget
  * Plugin URI:        https://example.com/wedding-widget
- * Description:       A fresh, independent set of Elementor widgets for wedding invitation sites: Countdown, Cover, RSVP, WhatsApp, Copy Text, and Add to Calendar.
+ * Description:       An independent Elementor widget pack for wedding invitation sites — Countdown, Cover, RSVP, Wishes, Music, Timeline, WhatsApp, Copy Text, Add to Calendar, and QR — plus a private in-editor template library with categories, search, and thumbnails. No license key required.
  * Version:           1.0.0
  * Author:            You
  * Text Domain:       wedding-widget
