@@ -52,6 +52,10 @@ final class WW_Loader {
 		add_action( 'init', array( $this, 'register_template_cpt' ) );
 		add_action( 'elementor/init', array( $this, 'register_elementor_source' ) );
 
+		// Auto-import bundled templates shipped inside the plugin (runs after the
+		// CPT is registered; only imports new/changed files).
+		add_action( 'init', array( $this, 'seed_bundled_templates' ), 20 );
+
 		// Custom in-editor template library (launcher icon + modal).
 		add_action( 'elementor/editor/after_enqueue_scripts', array( $this, 'enqueue_editor_assets' ) );
 		add_action( 'wp_ajax_ww_list_templates', array( $this, 'ajax_list_templates' ) );
@@ -103,6 +107,16 @@ final class WW_Loader {
 		if ( isset( \Elementor\Plugin::instance()->templates_manager ) ) {
 			\Elementor\Plugin::instance()->templates_manager->register_source( 'WeddingWidget\\WW_Template_Source' );
 		}
+	}
+
+	/**
+	 * Import bundled template JSON files shipped inside the plugin's /templates
+	 * folder. Only new or changed files are imported, so this is safe to run on
+	 * every load and after plugin updates.
+	 */
+	public function seed_bundled_templates() {
+		require_once WEDDING_WIDGET_PATH . 'includes/class-ww-template-seeder.php';
+		( new WW_Template_Seeder() )->maybe_seed();
 	}
 
 	/**
